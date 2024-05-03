@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas');
-
 .main-spa {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -8,12 +6,18 @@
     align-items: center;
     gap: 15px;
     justify-items: center;
-
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
-.titulo-spa {
-    -webkit-text-stroke: 2px rgb(63, 63, 63);
-    color: #dedede;
-    font-family: "Bebas Neue", sans-serif;
+
+.main-spa span:hover,.icon-title-cont:hover {
+    opacity: 1;
+}
+.main-title-spa {
+    backdrop-filter: blur(10px) saturate(70%);
+    color: #fff;
+    border-radius: 10px;
     grid-column: 2/6;
     text-align: center;
     grid-row: 1/3;
@@ -57,8 +61,7 @@
 
 
 .icon-title-cont {
-    filter: drop-shadow(0 0 5px rgb(83, 83, 83));
-    transition: filter 0.3s;
+    backdrop-filter: blur(10px) saturate(70%);
     width: 100%;
     height: 100%;
     align-items: center;
@@ -78,7 +81,8 @@
 
 }
 .img-logo:hover {
-    filter: drop-shadow(0 0 10px rgb(144, 144, 144));
+    /* A more matching color */
+    filter: drop-shadow(0 0 10px rgb(255, 255, 255));
 }
 
 /* Make grid responsive to mobiles */
@@ -136,8 +140,7 @@
         width: 150px;
         height: 100%;
     }
-    .titulo-spa {
-        -webkit-text-stroke: 2px rgb(38, 38, 38);
+    .main-title-spa {
         grid-column: 1/5;
         grid-row: 1/2;
     }
