@@ -24,7 +24,7 @@ const FQuestions = () => {
                 <h2 className="spa-titles text-4xl md:text-5xl lg:text-5xl p-4">Preguntas Frecuentes</h2>
             </aside>
             <div className="fquestions-img-cont">
-                <img src={svg} className="svgs-sections"></img>
+                <img src={svg} className="svgs-sections" alt='Imágen de preguntas frecuentes'></img>
             </div>
             <div className="fquestions-acordeon">
             <PaginatedItems itemsPerPage={3} questionsRetrieved={questionsRetrieved} />

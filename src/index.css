@@ -12,7 +12,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+p {
+  overflow: auto;
+}
 html {
   scroll-behavior: smooth;
 }

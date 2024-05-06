@@ -23,7 +23,7 @@ const Navbar = () => {
                       </li>
                     </ul>
                   </div>
-                  <img src={logo} className='logo-iesi'></img><a className="btn btn-ghost text-base">Egresados I.E.S.I</a>
+                  <img src={logo} className='logo-iesi' alt='Logo del San Isidoro'></img><a className="btn btn-ghost text-base">Egresados I.E.S.I</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                   <ul className="menu menu-horizontal px-1">
@@ -47,7 +47,7 @@ const Navbar = () => {
                 <div className="dropdown dropdown-end">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar md:hidden lg:hidden">
         <div className="w-10 rounded-full">
-          <img alt="Tailwind CSS Navbar component" src={defaultProfile} />
+          <img alt="Foto de perfil" src={defaultProfile} />
         </div>
       </div>
       <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">

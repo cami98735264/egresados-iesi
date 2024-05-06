@@ -4,10 +4,19 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './components/layout/Layout';
+import AuthForms from './components/auth-forms/AuthForms.js';
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Layout/>
+  },
+  {
+    path: '/login',
+    element: <AuthForms razon={"login"}/>
+  },
+  {
+    path: "/register",
+    element: <AuthForms razon={"register"}/>
   }
 ]);
 
