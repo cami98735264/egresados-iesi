@@ -1,7 +1,6 @@
-import svg from '../../assets/sections-imgs/fquestions.png';
+import svg from '../../assets/sections-imgs/fquestions.svg';
 import axios from 'axios';
 import './FQuestions.css';
-import ReactPaginate from 'react-paginate';
 import { useEffect, useState } from 'react';
 import PaginatedItems from '../utils/pagination/PaginatedItems.js';
 

@@ -15,7 +15,8 @@ const AuthForms = ({ razon }) => {
         const formData = new FormData(form);
         const data = Object.fromEntries(formData);
         data.recaptcha = recaptchaRef.current.getValue();
-        if (!data.documento || !data.contraseña) {
+        console.log(razon + ":\n", data);
+        if (Object.values(data).some(value => value === "")) {
             setModalMessage("Por favor, llena todos los campos");
             modal.showModal();
             return;
@@ -30,25 +31,37 @@ const AuthForms = ({ razon }) => {
         }
         else {
             try {
-                const googleRequest = await axios.post("/api/verify/captcha", {
-                    recaptcha: data.recaptcha
-                }, {
+                const url = razon === "login" ? "/api/auth/login" : "/api/auth/register";
+                const response = await axios.post(url, data, {
+                    withCredentials: true,
                     headers: {
                         'Content-Type': 'application/json'
                     }
                 });
-                if (!googleRequest.data.success) {
-                    throw googleRequest.data;
-                }
-                window.alert("Lo lograste! El captcha ha sido verificado")
+
             } catch (err) {
                 console.log(err);
-                if (!err.success && err.errors) {
-                    setModalMessage("No se ha podido verificar el captcha: " + err.errors.map(code => code).join(', '));
-                    modal.showModal();
-                } else {
-                    setModalMessage("Ocurrió un error interno en el servidor: " + JSON.stringify(err));
-                    modal.showModal();
+                switch (err.response.data.errorType) {
+                    case "NO_CAPTCHA":
+                        setModalMessage("Por favor, verifica el captcha");
+                        modal.showModal();
+                        break;
+                    case "DATA_LENGTH":
+                        setModalMessage(err.response.data.message + ": " + err.response.data.errors.join(", "));
+                        modal.showModal();
+                        break;
+                    case "INTERNAL_ERROR":
+                        setModalMessage("Ocurrió un error interno en el servidor: " + JSON.stringify(err));
+                        modal.showModal();
+                        break;
+                    case "CAPTCHA_ERROR":
+                        setModalMessage("Error al verificar el captcha: " + err.response.data.errors.join(", "));
+                        modal.showModal();
+                        break;
+                    default:
+                        setModalMessage("Error desconocido: " + JSON.stringify(err));
+                        modal.showModal();
+                        break;
                 }
 
             }
@@ -99,7 +112,7 @@ const AuthForms = ({ razon }) => {
                     </label>
                     <ReCAPTCHA sitekey="6LdrxtEpAAAAACsDG_49cbTo_MhyyftWvb6aJ730" className='recaptcha-cont' ref={recaptchaRef} />
                 </div>
-                <button className="btn btn-active btn-block btn-primary">{razon === "login" ? "Iniciar Sesión" : "Registrarse"}</button>
+                <button className="btn btn-active btn-block btn-outline btn-primary">{razon === "login" ? "Iniciar Sesión" : "Registrarse"}</button>
                 <a className='link link-primary' href={razon === "login" ? "/register" : "/login"}>{razon === "login" ? "Registrarse" : "Iniciar Sesión"}</a>
             </form>
             <dialog id="captcha_error_modal" className="modal modal-bottom sm:modal-middle">

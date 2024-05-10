@@ -41,8 +41,8 @@ const Navbar = () => {
                   </ul>
                 </div>
                 <div className="navbar-end">
-                  <a className="btn mr-3 hidden md:flex lg:flex">Iniciar Sesión</a>
-                  <a className="btn hidden md:flex lg:flex">Registrarse</a>
+                  <a className="btn mr-3 hidden md:flex lg:flex" href='/login'>Iniciar Sesión</a>
+                  <a className="btn hidden md:flex lg:flex" href='/register'>Registrarse</a>
                 </div>
                 <div className="dropdown dropdown-end">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar md:hidden lg:hidden">

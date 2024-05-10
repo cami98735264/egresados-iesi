@@ -11,7 +11,6 @@
     background-repeat: no-repeat;
 }
 
-
 .main-spa span:hover,.icon-title-cont:hover {
     opacity: 1;
 }
@@ -32,9 +31,6 @@
     width: 100%;
 }
 /* Make img responsive */
-
-
-
 
 .desc-spa2 {
     color: #dedede;
