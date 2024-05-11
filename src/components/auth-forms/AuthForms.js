@@ -5,65 +5,54 @@ import axios from 'axios';
 
 const AuthForms = ({ razon }) => {
     const recaptchaRef = createRef();
-    const [modalMessage, setModalMessage] = useState('null');
-
+    const [modalMessage, setModalMessage] = useState(<></>);
+    const showModalMessage = (message) => {
+        const modal = document.getElementById('captcha_error_modal');
+        setModalMessage(message);
+        modal.showModal();
+    }
 
     const handleSubmit = async (e) => {
-        const modal = document.getElementById('captcha_error_modal');
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form);
         const data = Object.fromEntries(formData);
         data.recaptcha = recaptchaRef.current.getValue();
         console.log(razon + ":\n", data);
-        if (Object.values(data).some(value => value === "")) {
-            setModalMessage("Por favor, llena todos los campos");
-            modal.showModal();
-            return;
-        }
-        else if (!data.cookies_checkbox) {
-            setModalMessage("Por favor, acepta el uso de cookies");
-            modal.showModal();
-        }
-        else if (!data.recaptcha) {
-            setModalMessage("Por favor, verifica el captcha");
-            modal.showModal();
-        }
-        else {
-            try {
-                const url = razon === "login" ? "/api/auth/login" : "/api/auth/register";
-                const response = await axios.post(url, data, {
-                    withCredentials: true,
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
-
-            } catch (err) {
-                console.log(err);
-                switch (err.response.data.errorType) {
-                    case "NO_CAPTCHA":
-                        setModalMessage("Por favor, verifica el captcha");
-                        modal.showModal();
-                        break;
-                    case "DATA_LENGTH":
-                        setModalMessage(err.response.data.message + ": " + err.response.data.errors.join(", "));
-                        modal.showModal();
-                        break;
-                    case "INTERNAL_ERROR":
-                        setModalMessage("Ocurrió un error interno en el servidor: " + JSON.stringify(err));
-                        modal.showModal();
-                        break;
-                    case "CAPTCHA_ERROR":
-                        setModalMessage("Error al verificar el captcha: " + err.response.data.errors.join(", "));
-                        modal.showModal();
-                        break;
-                    default:
-                        setModalMessage("Error desconocido: " + JSON.stringify(err));
-                        modal.showModal();
-                        break;
+        if (Object.values(data).some(value => value === "")) return showModalMessage("Por favor, llena todos los campos");
+        if (!data.cookies_checkbox) return showModalMessage("Por favor, acepta el uso de cookies");
+        if (!data.recaptcha) return showModalMessage("Por favor, verifica el captcha");
+        try {
+            const url = razon === "login" ? "/api/auth/login" : "/api/auth/register";
+            const response = await axios.post(url, data, {
+                withCredentials: true,
+                headers: {
+                    'Content-Type': 'application/json'
                 }
-
+            });
+        } catch (err) {
+            console.log(err);
+            switch (err.response.data.errorType) {
+                case "NO_CAPTCHA":
+                    showModalMessage("Por favor, verifica el captcha");
+                    break;
+                case "DATA_LENGTH":
+                    showModalMessage(<>
+                    <p className='py-4'>{err.response.data.message}:</p>
+                    {err.response.data.errors.map((error, index) => (
+                        <p key={index}><i>{index+1}. {error}</i></p>
+                    ))}
+                    </>);
+                    break;
+                case "INTERNAL_ERROR":
+                    showModalMessage("Ocurrió un error interno en el servidor: " + JSON.stringify(err));
+                    break;
+                case "CAPTCHA_ERROR":
+                    showModalMessage("Error al verificar el captcha: " + err.response.data.errors.join(", "));
+                    break;
+                default:
+                    showModalMessage("Error desconocido: " + JSON.stringify(err));
+                    break;
             }
         }
     }
@@ -118,11 +107,11 @@ const AuthForms = ({ razon }) => {
             <dialog id="captcha_error_modal" className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
                     <h3 className="font-bold text-lg">Error</h3>
-                    <p className="py-4">{modalMessage}</p>
+                    {modalMessage}
                     <div className="modal-action">
                         <form method="dialog">
                             {/* if there is a button in form, it will close the modal */}
-                            <button className="btn">Close</button>
+                            <button className="btn">Cerrar</button>
                         </form>
                     </div>
                 </div>
