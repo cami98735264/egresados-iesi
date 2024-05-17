@@ -1,6 +1,6 @@
 .authforms_main {
-    display: grid;
-    height: 100vh;
+    display: flex;
+    height: 100dvh;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -20,7 +20,7 @@
     margin: 0 auto;
     padding: 40px;
     width: 450px;
-    gap: 40px;
+    gap: 20px;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;    background-color: #1b2127;
 }
@@ -54,5 +54,8 @@ iframe {
         width: 90%;
         padding: 20px;
         gap: 20px;
+    }
+    .authforms_container {
+        scale: 0.8;
     }
 }
