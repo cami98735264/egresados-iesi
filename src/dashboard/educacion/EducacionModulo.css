@@ -1,0 +1,23 @@
+.modulo_educacion {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.modulo_educacion button {
+    width: 200px;
+}
+
+.joined {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+
+.educacion_formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

@@ -1,0 +1,6 @@
+.estadisticas {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    padding: 40px; 
+}
