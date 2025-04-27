@@ -1,6 +1,7 @@
 .modulo_educacion {
     margin: 20px;
     display: flex;
+    min-height: 100vh;
     flex-direction: column;
 }
 

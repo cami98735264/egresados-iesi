@@ -1,70 +1,156 @@
-# Getting Started with Create React App
+# San Isidoro Egresados - Frontend Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Overview
+This is the frontend application for the San Isidoro Egresados platform, built with React and modern web technologies. The application provides a user-friendly interface for alumni management and interaction.
 
-## Available Scripts
+## Project Structure
+```
+frontend/
+├── public/                 # Static files and public assets
+├── src/                    # Source code
+│   ├── assets/            # Images, icons, and other static assets
+│   │
+│   ├── authentication/    # Authentication related components and logic
+│   │   ├── OnlyAdmin.js           # Admin-only route protection component
+│   │   ├── HandleAuthenticated.js # Authentication state handler component
+│   │   └── AuthenticationContext.js # Auth context provider and state management
+│   │
+│   ├── components/        # Reusable UI components
+│   │   ├── auth-forms/    # Authentication form components
+│   │   │   ├── AuthForms.js  # Main authentication forms component
+│   │   │   └── AuthForms.css # Authentication forms styling
+│   │   │
+│   │   ├── utils/         # Utility components
+│   │   │   └── pagination/ # Pagination related components
+│   │   │
+│   │   ├── fquestions/    # Form question components
+│   │   │   ├── FQuestions.js  # Form questions component
+│   │   │   └── FQuestions.css # Form questions styling
+│   │   │
+│   │   ├── footer/        # Footer components
+│   │   │   ├── Footer.js  # Main footer component
+│   │   │   └── Footer.css # Footer styling
+│   │   │
+│   │   ├── spa_main/      # Single Page Application main components
+│   │   │   ├── SPA_Main.js  # Main SPA component
+│   │   │   └── SPA_Main.css # SPA styling
+│   │   │
+│   │   ├── navbar/        # Navigation bar components
+│   │   │   ├── Navbar.js  # Main navigation component
+│   │   │   └── Navbar.css # Navigation styling
+│   │   │
+│   │   └── layout/        # Layout components
+│   │       ├── Layout.js  # Main layout component
+│   │       └── Layout.css # Layout styling
+│   │
+│   ├── dashboard/         # Dashboard related components and pages
+│   │   ├── estadisticas/  # Statistics and analytics components
+│   │   │   ├── EstadisticasModulo.js  # Statistics module component
+│   │   │   └── EstadisticasModulo.css # Statistics module styling
+│   │   │
+│   │   ├── ui_components/ # Dashboard UI components
+│   │   │
+│   │   ├── layout/        # Dashboard layout components
+│   │   │
+│   │   ├── educacion/     # Education-related components
+│   │   │   ├── EducacionModulo.js  # Education module component
+│   │   │   └── EducacionModulo.css # Education module styling
+│   │   │
+│   │   ├── trabajos/      # Work-related components
+│   │   │   └── TrabajosModulo.js   # Work module component
+│   │   │
+│   │   └── main_dashboard/ # Main dashboard components
+│   │       └── MainDashboard.js    # Main dashboard component
+│   │
+│   ├── utils/            # Utility functions and helpers
+│   │   └── handleLogout.js # Logout functionality utility
+│   │
+│   ├── App.css           # Global application styles
+│   ├── App.test.js       # App component tests
+│   ├── index.css         # Root styles and Tailwind imports
+│   ├── index.js          # Application entry point and root render
+│   ├── logo.svg          # Application logo
+│   ├── reportWebVitals.js # Performance monitoring utility
+│   └── setupTests.js     # Test configuration and setup
+│
+├── package.json          # Project dependencies and scripts
+├── tailwind.config.js    # Tailwind CSS configuration
+└── .gitignore           # Git ignore rules
+```
 
-In the project directory, you can run:
+## Technologies Used
+- React 18.3.1
+- React Router DOM 6.23.0
+- Axios 1.6.8
+- TailwindCSS 3.4.3
+- DaisyUI 4.10.3
+- Radix UI Themes 3.0.3
+- Tremor React 3.17.3
+- React Google reCAPTCHA 3.1.0
+- React Paginate 8.2.0
 
-### `npm start`
+## Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Prerequisites
+- Node.js (LTS version recommended)
+- npm or yarn package manager
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Installation
+1. Clone the repository
+2. Navigate to the frontend directory
+3. Install dependencies:
+```bash
+npm install
+```
 
-### `npm test`
+### Development
+To start the development server:
+```bash
+npm start
+```
+The application will be available at [http://localhost:3000](http://localhost:3000)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Building for Production
+To create a production build:
+```bash
+npm run build
+```
+The build files will be generated in the `build` directory.
 
-### `npm run build`
+### Testing
+To run tests:
+```bash
+npm test
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Key Features
+- Modern, responsive UI with TailwindCSS and DaisyUI
+- Authentication system with role-based access control
+- Comprehensive dashboard with statistics and analytics
+- Education and work tracking components
+- Reusable component library
+- Performance monitoring with Web Vitals
+- Google reCAPTCHA integration
+- Pagination support
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Development Guidelines
+- Follow React best practices and component-based architecture
+- Use functional components with hooks
+- Maintain consistent code style
+- Write tests for critical components
+- Use the provided utility functions for common operations
+- Keep components organized in their respective feature folders
+- Follow the established authentication patterns
+- Maintain separate CSS files for each major component
+- Use consistent naming conventions for components and files
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Deployment
+The application is configured for production deployment. Use the build command to generate optimized files for deployment.
 
-### `npm run eject`
+## Contributing
+1. Create a feature branch
+2. Make your changes
+3. Submit a pull request
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## License
+This project is proprietary software. All rights reserved.
